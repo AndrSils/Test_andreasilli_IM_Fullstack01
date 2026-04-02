@@ -36,7 +36,24 @@ static class RouteRegistrationExtensions
         })
         .WithName("GetCustomerCategoriesList")
         .WithOpenApi();
-        
+    
+
+        // POST endpoint per creare un nuovo customer
+        apiGroup.MapPost("customer/create", async (CreateCustomerRequest request, IMediator mediator) =>
+        {
+            try
+            {
+                var result = await mediator.Send(new CreateCustomerCommand(request));
+                return Results.Ok(result);
+            }
+            catch (ArgumentException ex)
+            {
+                return Results.BadRequest(new { error = ex.Message });
+            }
+        })
+        .WithName("CreateCustomer")
+        .WithOpenApi();
+
                     
     }
 
