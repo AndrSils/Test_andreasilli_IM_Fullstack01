@@ -1,6 +1,7 @@
 using Backend.Features.Employees;
 using Backend.Features.Suppliers;
 using Backend.Features.Customers;
+using Backend.Features.CustomerCategories;
 
 namespace Backend;
 
@@ -18,7 +19,7 @@ static class RouteRegistrationExtensions
                     .WithName("GetEmployeesList")
                     .WithOpenApi();
 
-        // aggiungo qui la mia nuova rotta dell'endpoint
+        // aggiungo qui la mia nuova rotta dell'endpoint per il customers
          apiGroup.MapGet("customer/list", async (string? searchText, IMediator mediator) => 
         {
             var query = new GetCustomerListQuery(searchText);
@@ -26,6 +27,16 @@ static class RouteRegistrationExtensions
         })
         .WithName("GetCustomersList")
         .WithOpenApi();
+
+        // Aggingo end poit per tutte le categorie dei clienti
+        apiGroup.MapGet("customercategories/list", async (IMediator mediator) =>
+        {
+            var result = await mediator.Send(new GetCustomerCategoriesQuery());
+            return Results.Ok(result);
+        })
+        .WithName("GetCustomerCategoriesList")
+        .WithOpenApi();
+        
                     
     }
 
