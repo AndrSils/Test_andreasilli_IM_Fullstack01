@@ -1,6 +1,6 @@
-// NB: ner routing ho /CustomerList
-// Tabella : Name, Address, Email, Phone, IBAN, Category Code, Category Description
 
+// Tabella : Name, Address, Email, Phone, IBAN, Category Code, Category Description
+// NB: nel routing ho /CustomerList
 // AppRouter.tsx e ShellHeader.tsx mi gestiscono già la navigazione
 import {
   Paper,
@@ -19,8 +19,6 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { useEffect, useState, useCallback } from "react";
-
-
 
 interface CustomerListDTO {
   id: number;
@@ -79,9 +77,7 @@ export default function CustomerListPage() {
     exportToXML(list);
   };
 
-
   // esportazione xml, uso escapeXml per errori di formattazione nei caratteri speciali 
-  //NB: vedere se gestire altro oltre UTF-8
   const exportToXML = (data: CustomerListDTO[]) => {
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
     xml += '<customers>\n';
@@ -122,8 +118,7 @@ export default function CustomerListPage() {
       .replace(/'/g, '&apos;');
   };
 
-
-
+// uso MUI styled StyledTableHeadCell per un colore di sfondo per la leggibilità
   return (
     <>
       <Typography variant="h4" sx={{ textAlign: "center", mt: 4, mb: 4 }}>
@@ -155,8 +150,6 @@ export default function CustomerListPage() {
           {error}
         </Typography>
       )}
-
-// uso MUI styled StyledTableHeadCell per un colore di sfondo per la leggibilità
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="customers table">
