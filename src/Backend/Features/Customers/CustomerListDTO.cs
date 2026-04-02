@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 namespace Backend.Features.Customers;
 
 // Creo il DTO
-// NB: CustomerCategoryId è int? -> customers che potrebbero non avere categoria
 public class  CustomerListDTO  {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;

@@ -20,7 +20,7 @@ public class GetCustomerListHandler : IRequestHandler<GetCustomerListQuery, List
             .Include(c => c.CustomerCategory)
             .AsQueryable();
 
-        // faccio il filtrpo se lo trovo
+        // faccio il filtro se lo inserisco nella chiamata
         if (!string.IsNullOrWhiteSpace(request.SearchText))
         {
             var search = request.SearchText.ToLower();

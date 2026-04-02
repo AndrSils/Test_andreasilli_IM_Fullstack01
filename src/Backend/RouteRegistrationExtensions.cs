@@ -18,7 +18,7 @@ static class RouteRegistrationExtensions
                     .WithName("GetEmployeesList")
                     .WithOpenApi();
 
-        // aggiungo qui la mia nuova rotto dell'endpoint
+        // aggiungo qui la mia nuova rotta dell'endpoint
          apiGroup.MapGet("customer/list", async (string? searchText, IMediator mediator) => 
         {
             var query = new GetCustomerListQuery(searchText);
